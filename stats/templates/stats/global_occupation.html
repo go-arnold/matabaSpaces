@@ -1,0 +1,310 @@
+{% extends 'new_main.html' %}
+
+{% block content %}
+{% load static %}  
+
+
+<style>
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+
+<h1 class="display-4 mb-5 chart-container">Overall Statistics CikuruSpaces</h1>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<div class="card mt-3">
+  <div class="card-content">
+      <div class="row row-group m-0">
+          <div class="col-12 col-lg-6 col-xl-3 border-light">
+              <div class="card-body">
+                <h5 class="text-white mb-0">{{total_slots}} <span class="float-right"><i class="zmdi zmdi-car"></i></span></h5>
+                  <div class="progress my-3" style="height:3px;">
+                     <div class="progress-bar" style="width:{{occupied_percent}}%"></div>
+                  </div>
+                <p class="mb-0 text-white small-font">Total Parking Slots <span class="float-right">+{{occupied_percent}}% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6 col-xl-3 border-light">
+              <div class="card-body">
+                <h5 class="text-white mb-0">{{booked}}<span class="float-right"><i class="zmdi zmdi-bookmark"></i></span></h5>
+                  <div class="progress my-3" style="height:3px;">
+                     <div class="progress-bar" style="width:{{book_percent}}% "></div>
+                  </div>
+                <p class="mb-0 text-white small-font">Total Reservation <span class="float-right">+{{book_percent}}% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6 col-xl-3 border-light">
+              <div class="card-body">
+                <h5 class="text-white mb-0">{{allparks}}<span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                  <div class="progress my-3" style="height:3px;">
+                     <div class="progress-bar" style="width:{{avg_per_ville_percent}}%"></div>
+                  </div>
+                <p class="mb-0 text-white small-font">All the parking areas <span class="float-right"><i class="zmdi zmdi-long-arrow-up"></i>{{avg_per_ville}} /city</span></p>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6 col-xl-3 border-light">
+              <div class="card-body">
+                <h5 class="text-white mb-0">{{objects}}<span class="float-right"><i class="fa fa-envira"></i></span></h5>
+                  <div class="progress my-3" style="height:3px;">
+                     <div class="progress-bar" style="width:{{objects_park_percent}}%"></div>
+                  </div>
+                <p class="mb-0 text-white small-font">Objects found<span class="float-right">{{objects_park}}<i class="zmdi zmdi-long-arrow-up"></i> per parking</span></p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>  
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+ 
+  <div class="row">
+    <div class="col-12 col-lg-8 col-xl-8">
+     <div class="card">
+    <div class="card-header">Percentage of Slots Occupied /24hours
+      <div class="card-action">
+      <div class="dropdown">
+      <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+       <i class="icon-options"></i>
+      </a>
+       <div class="dropdown-menu dropdown-menu-right">
+       <a class="dropdown-item" href="{% url 'home' %}">See the parkings</a>    
+       <div class="dropdown-divider"></div>          
+       <button id="downloadLineChart" class="dropdown-item">Download</button>
+       
+        </div>
+       </div>
+      </div>
+    </div>
+    <div class="card-body">
+       
+     <div class="chart-container ">      
+       <canvas id="lineChart"></canvas>
+     </div>
+    </div>
+    
+    
+    
+   </div>
+  </div>
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  
+
+  <div class="col-12 col-lg-4 col-xl-4">
+    <div class="card">
+       <div class="card-header">Parking Areas per City
+         <div class="card-action">
+         <div class="dropdown">
+         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+          <i class="icon-options"></i>
+         </a>
+          <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item"  href="{% url 'home' %}">See parking</a>
+          
+          <div class="dropdown-divider"></div>
+          
+          <button class="dropdown-item" id="downloadDoughnutChart">Download</button>
+          </div>
+          </div>
+         </div>
+       </div>
+       <div class="card-body">
+     <div class="chart-container-2">
+      
+           <canvas id="doughnutChart"></canvas>
+      </div>
+       </div>
+       <div class="table-responsive">
+         <table class="table align-items-center">
+           <tbody>
+            <tr>
+              <td><i class=" text-light-2 mr-2"></i>City name</td>
+              <td>Number of parkings</td>
+              
+            </tr>
+            {% for city in city_parking_counts %}
+            <tr>
+              <td><i class="fa fa-circle text-light-2 mr-2"></i>{{ city.name }}</td>
+              <td>{{ city.nparks }}</td>
+               
+             </tr>
+             {% endfor %}
+           </tbody>
+         </table>
+       </div>
+     </div>
+ </div>
+</div><!--End Row-->
+  
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <div class="chart-container">
+    <h2  class="display-5">Prices for each Parking Area</h2>
+    <canvas id="mixedChart" class="mb-5"></canvas>
+    
+    <button id="downloadMixedChart">Download </button>
+    
+  </div>
+  
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<script>
+  // Doughnut Chart
+  const doughnutChartData = {{ doughnut_chart_data|safe }};
+  const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+  const doughnutChart = new Chart(doughnutCtx, {
+      type: 'doughnut',
+      data: doughnutChartData,
+      options: {
+          plugins: {
+              legend: {
+                  display: false 
+              }
+          }
+      }
+  });
+
+  document.getElementById('downloadDoughnutChart').addEventListener('click', function() {
+      if (doughnutChart && typeof doughnutChart.toBase64Image === 'function') {
+          var link = document.createElement('a');
+          link.href = doughnutChart.toBase64Image();
+          link.download = 'Parking_Areas_per_city.png';
+          link.click();
+      } else {
+          console.error('doughnutChart is not properly initialized.');
+      }
+  });
+
+  // Line Chart
+  const lineChartData = {{ line_chart_data|safe }};
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const lineChart = new Chart(lineCtx, {
+      type: 'line',
+      data: lineChartData,
+      options: {
+          scales: {
+              x: {
+                  ticks: {
+                      color: 'white' // Couleur des valeurs des abscisses en blanc
+                  }
+              },
+              y: {
+                  ticks: {
+                      color: 'white' // Couleur des valeurs des ordonnées en blanc
+                  }
+              }
+          },
+          plugins: {
+              legend: {
+                  labels: {
+                      color: 'white' // Couleur des labels de la légende en blanc
+                  }
+              }
+          }
+      }
+  });
+
+  document.getElementById('downloadLineChart').addEventListener('click', function() {
+      if (lineChart && typeof lineChart.toBase64Image === 'function') {
+          var link = document.createElement('a');
+          link.href = lineChart.toBase64Image();
+          link.download = 'Percentage_of_Slots_Occupied.png';
+          link.click();
+      } else {
+          console.error('lineChart is not properly initialized.');
+      }
+  });
+
+  // Mixed Chart
+  const mixedChartData = {{ mixed_chart_data|safe }};
+  const mixedCtx = document.getElementById('mixedChart').getContext('2d');
+  const mixedChart = new Chart(mixedCtx, {
+      type: 'bar',
+      data: mixedChartData,
+      options: {
+          scales: {
+              x: {
+                  ticks: {
+                      color: 'white' // Couleur des valeurs des abscisses en blanc
+                  }
+              },
+              y: {
+                  ticks: {
+                      color: 'white' // Couleur des valeurs des ordonnées en blanc
+                  }
+              }
+          },
+          plugins: {
+              legend: {
+                  labels: {
+                      color: 'white' // Couleur des labels de la légende en blanc
+                  }
+              }
+          }
+      }
+  });
+
+  document.getElementById('downloadMixedChart').addEventListener('click', function() {
+      if (mixedChart && typeof mixedChart.toBase64Image === 'function') {
+          var link = document.createElement('a');
+          link.href = mixedChart.toBase64Image();
+          link.download = 'prices_for_each_parking_Area.png';
+          link.click();
+      } else {
+          console.error('mixedChart is not properly initialized.');
+      }
+  });
+</script>
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

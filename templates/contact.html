@@ -1,0 +1,37 @@
+{% extends 'new_main.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-4">
+            <h1 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">Feel free to contact us anytime</h1>
+            <p class="fs-4" id="parking">Have any questions or need assistance? We're here to help! Whether you're a parking lot owner looking to join our platform or a driver in need of support, don't hesitate to reach out. Our team is ready to assist you with any inquiries or issues you may have. We look forward to hearing from you!</p>
+        </div>
+        <div class="col-lg-6">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                {% for message in messages %}
+                    <div class="alert text-center {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Your name Please">
+                    <label for="floatingName">Name</label>
+                </div>
+                <div class="form-floating mb-3" id="contact">
+                    <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                    <label for="floatingEmail">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea name="message" class="form-control" id="floatingMessage" placeholder="Your message Please"></textarea>
+                    <label for="floatingMessage">Message</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
+                <hr class="my-4">
+                <small class="text-muted" id="suggest">Messages are usually replied within 1 hour or less</small>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

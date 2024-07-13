@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+Hey {{user}},
+Thank you for registering your account You will need to follow this link to finish up the confirmation
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}

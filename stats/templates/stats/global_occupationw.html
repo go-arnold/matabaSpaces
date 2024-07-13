@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Profile</title>
+  <!-- loader-->
+  <link href="{% static 'dashtreme-master/assets/css/pace.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'dashtreme-master/assets/js/pace.min.js' %}"></script>
+ 
+  <!--favicon-->
+  <link rel="icon" href="{% static 'dashtreme-master/assets/images/favicon.ico' %}" type="image/x-icon">
+  <!-- simplebar CSS-->
+  <link href="{% static 'dashtreme-master/assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="{% static 'dashtreme-master/assets/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="{% static 'dashtreme-master/assets/css/animate.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{% static 'dashtreme-master/assets/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="{% static 'dashtreme-master/assets/css/sidebar-menu.css' %}" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="{% static 'dashtreme-master/assets/css/app-style.css' %}" rel="stylesheet"/>
+  
+</head>
+
+<body class="bg-theme bg-theme2">
+
+<!-- start loader -->
+   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+
+  <!--Start sidebar-wrapper-->
+   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+     <div class="brand-logo">
+      <a href="{% url 'home'%}">
+       <img src="{% static 'dashtreme-master/assets/images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text">MatabaSpaces</h5>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
+      <li class="sidebar-header">MAIN NAVIGATION</li>
+      <li>
+        <a href="{% url 'home'%}">
+          <i class="zmdi zmdi-view-dashboard"></i> <span>Home</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'found_objects'%}">
+          <i class="zmdi zmdi-shape"></i><span>Lost something?</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'statistics'%}">
+          <i class="zmdi zmdi-bus"></i><span>Statistics</span>
+          
+        </a>
+      </li>
+      <li>
+        <a href="{% static 'dashtreme-master/icons.html'%}">
+          <i class="zmdi zmdi-invert-colors"></i> <span>Icons</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% static 'dashtreme-master/forms.html'%}">
+          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% static 'dashtreme-master/tables.html' %}">
+          <i class="zmdi zmdi-grid"></i> <span>Tables</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% static 'dashtreme-master/calendar.html' %}">
+          <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
+          <small class="badge float-right badge-light">New</small>
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-face"></i> <span>Profile</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'login' %}" target="_blank">
+          <i class="zmdi zmdi-lock"></i> <span>Login</span>
+        </a>
+      </li>
+
+       <li>
+        <a href="{% url 'register' %}" target="_blank">
+          <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
+        </a>
+      </li>
+	  
+      <li class="sidebar-header">LABELS</li>
+      <li><a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
+      <li><a href="javaScript:void();"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
+      <li><a href="javaScript:void();"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>
+
+    </ul>
+   
+   </div>
+   <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
+<header class="topbar-nav">
+ <nav class="navbar navbar-expand fixed-top">
+  <ul class="navbar-nav mr-auto align-items-center">
+    <li class="nav-item">
+      <a class="nav-link toggle-menu" href="javascript:void();">
+       <i class="icon-menu menu-icon"></i>
+     </a>
+    </li>
+    <li class="nav-item">
+      <form class="search-bar">
+        <input type="text" class="form-control" placeholder="Enter keywords">
+         <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+      </form>
+    </li>
+  </ul>
+     
+  <ul class="navbar-nav align-items-center right-nav-link">
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-envelope-open-o"></i></a>
+    </li>
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-bell-o"></i></a>
+    </li>
+    <li class="nav-item language">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="zmdi zmdi-assignment-alert"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+          <li class="dropdown-item"> <i class="zmdi zmdi-alert-polygon"></i> List of found objects</li>
+          {% if user.is_superuser or is_parking_manager %}
+          <li class="dropdown-item"> <i class="zmdi zmdi-accounts-list"></i> Add lost object</li>
+          {% endif%}
+          
+        </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+        <span class="user-profile"><img src="{{request.user.photo.url}}" class="img-circle" alt="user avatar"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="{{request.user.photo.url}}" alt="user avatar"></div>
+            <div class="media-body">
+            <h6 class="mt-2 user-title">{{request.user.first_name.capitalize}} {{request.user.last_name.capitalize}}</h6>
+            <p class="user-subtitle">{{request.user.email}}</p>
+            </div>
+           </div>
+          </a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+        <li class="dropdown-divider"></li>
+        <a href="{% url 'change' %}"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li></a>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        <li class="dropdown-divider"></li>
+        <a href="{% url 'logout' %}"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li><a>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</header>
+<!--End topbar header-->
+
+<div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class=" card card-authentication1 mx-auto my-4">
+      {% for message in messages %}    
+      {% if message.tags == 'error' %}
+      
+      <div class=" p-2 my-2 mx-5 border-start border border-end border-danger border-5 text-danger rounded justify-content-center d-flex align-items-center" >        
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle me-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" /></svg>  
+        <div>{{message}}</div>
+      </div>
+      {% else %}
+      <div class=" p-2 my-2 mx-5 border-start border border-end border-success border-5 text-success rounded justify-content-center d-flex align-items-center" >  
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check me-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>      
+          <div>{{message}}</div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="container-fluid">
+<style>
+  .chart-container {
+    width: 100%;
+    max-width: 1200px; /* Adjust the max width as needed */
+    margin: 0 auto; /* Center the chart */
+    padding: 20px 0; /* Add padding if needed */
+}
+
+#doughnutChart {
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the chart */
+}
+</style>
+
+<h1 class="display-4 mb-5 chart-container">Overall Statistics MatabaSpaces</h1>
+  <div class="chart-container"> 
+    <h2  class="display-5">Percentage of Slots Occupied</h2>
+    <canvas id="lineChart" class="mb-5"></canvas>
+  </div>
+  
+
+  <div class="chart-container">
+    <h2  class="display-5">Prices for each Parking Area</h2>
+    <canvas id="mixedChart" class="mb-5"></canvas>
+  </div>
+  
+
+  <div class="chart-container">
+    <h2  class="display-5">Parking Areas per City</h2>
+    <canvas id="doughnutChart" class="mb-0"></canvas>
+  </div>
+  
+</div>
+ 
+
+  
+
+	<!--start overlay-->
+  <div class="overlay toggle-menu"></div>
+  <!--end overlay-->
+
+  </div>
+  <!-- End container-fluid-->
+ </div><!--End content-wrapper-->
+ <!--Start Back To Top Button-->
+  <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+  <!--End Back To Top Button-->
+
+<!--Start footer-->
+<footer class="footer">
+    <div class="container">
+      <div class="text-center">
+        Copyright © 2024 MatabaSpaces
+      </div>
+    </div>
+  </footer>
+<!--End footer-->
+
+<!--start color switcher-->
+ <div class="right-sidebar">
+  <div class="switcher-icon">
+    <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+  </div>
+  <div class="right-sidebar-content">
+
+    <p class="mb-0">Gaussion Texture</p>
+    <hr>
+    
+    <ul class="switcher">
+      <li id="theme1"></li>
+      <li id="theme2"></li>
+      <li id="theme3"></li>
+      <li id="theme4"></li>
+      <li id="theme5"></li>
+      <li id="theme6"></li>
+    </ul>
+
+    <p class="mb-0">Gradient Background</p>
+    <hr>
+    
+    <ul class="switcher">
+      <li id="theme7"></li>
+      <li id="theme8"></li>
+      <li id="theme9"></li>
+      <li id="theme10"></li>
+      <li id="theme11"></li>
+      <li id="theme12"></li>
+      <li id="theme13"></li>
+      <li id="theme14"></li>
+      <li id="theme15"></li>
+    </ul>
+    
+   </div>
+ </div>
+<!--end color switcher-->
+ 
+</div><!--End wrapper-->
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'dashtreme-master/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'dashtreme-master/assets/js/popper.min.js' %}"></script>
+<script src="{% static 'dashtreme-master/assets/js/bootstrap.min.js' %}"></script>
+
+<!-- simplebar js -->
+<script src="{% static 'dashtreme-master/assets/plugins/simplebar/js/simplebar.js' %}"></script>
+<!-- sidebar-menu js -->
+<script src="{% static 'dashtreme-master/assets/js/sidebar-menu.js' %}"></script>
+
+<!-- Custom scripts -->
+<script src="{% static 'dashtreme-master/assets/js/app-script.js' %}"></script>
+
+</body>
+</html>

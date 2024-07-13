@@ -1,0 +1,26 @@
+{% extends "new_main.html" %}
+{% block content %}
+
+<div class="card-columns">
+  {% for request in lost_requests %}
+    <div class="card">
+      <img class="card-img-top" src="{{ request.photo.url }}" alt="{{ request.description }}">
+      <div class="card-body">
+        <h5 class="card-title">Request</h5>
+        <p class="card-text"> {{ request.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Lost on {{ request.date }}</li>
+        <li class="list-group-item">Lost at {{ request.parking_area }}</li>
+      </ul>
+      <div class="card-body ">
+        {% if request.response %}
+        <strong>Response:</strong> {{ request.response }}<br>
+        {% endif %}
+        <a href="{% url 'request_lost_object' %}">Request Lost Object</a>
+      </div>
+    </div> 
+  {% endfor %}
+</div>
+
+{% endblock %}

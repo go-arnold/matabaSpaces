@@ -1,0 +1,17 @@
+{% extends "new_main.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <div><i class="zmdi zmdi-fire display-1"> 500</i></div>
+        <div class="display-5">
+            Internal Server Error. Something went wrong on our end.
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Home page</a>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+

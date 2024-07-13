@@ -1,0 +1,664 @@
+{% extends "home-main.html" %}
+{% block content%}
+{% load static %}
+<style>
+    
+   
+    
+.sticky-carousel {
+    position: sticky;
+    top: 0; /* Ajustez cette valeur selon la hauteur de votre menu principal */
+    z-index: 100; 
+  }
+      
+    .container.marketing {
+        margin-top: 5px; /* Ajustez cette valeur selon vos besoins */
+      }
+      
+      .div.courses {
+        padding-top: 5px; /* Ajustez cette valeur selon vos besoins */
+      }
+
+    .carousel-item {
+        height: 100vh; /* Adjust height as needed */
+        min-height: 300px;
+      }
+      
+      .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        filter: brightness(80%); /* Darken the image slightly for better text visibility */
+      }
+      
+      .carousel-caption {
+        bottom: 20%; /* Adjust the vertical position of the captions */
+      }
+      
+      .carousel-indicators button {
+        background-color: rgba(255, 255, 255, 0.5); /* Lighten the indicators for better visibility */
+      }
+      
+      .carousel-indicators .active {
+        background-color: white;
+      }
+      
+      
+    .team-member {
+        margin: 0 auto; /* Center the team member card */
+      }
+      
+      .social-icons {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center; /* Center the social icons */
+      }
+      
+      .social-icons li {
+        margin: 0 10px; /* Space between icons */
+      }
+      
+      .social-icons li a {
+        color: #fff; /* Change to desired icon color */
+        font-size: 20px; /* Adjust icon size */
+      }
+      
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+  
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+  
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+  
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+  
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+  
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+  
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+  
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+    
+    .team {
+      margin-top: 100px;
+      padding-top: 140px;
+    }
+  
+    .team-member {
+      position: relative;
+    }
+  
+    .team-member:hover img {
+      top: -120px;
+    }
+  
+    .team-member img {
+      max-width: 220px;
+      border-radius: 50%;
+      position: absolute;
+      top: -110px;
+      left: 50%;
+      transform: translateX(-110px);
+      transition: all .3s;
+    }
+  
+    .team-member .main-content {
+      border-radius: 25px;
+      padding: 140px 30px 40px 30px;
+      background-color: #f9f9fa21;
+      text-align: center;
+    }
+  
+    .team-member .main-content span.category {
+      color: #0d142683;
+      font-size: 15px;
+    }
+  
+    .team-member .main-content h4 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 8px;
+      margin-bottom: 15px;
+    }
+  
+    .team-member .main-content ul li {
+      display: inline-block;
+      margin: 0px 2px;
+    }
+  
+    .team-member .main-content ul li a {
+      background-color: #25252541;
+      color: #0d142683;
+      display: inline-block;
+      text-align: center;
+      line-height: 40px;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: all .3s;
+    }
+  
+    .team-member .main-content ul li a:hover {
+      background-color: #0d142683;
+      color: #fff;
+    }
+  
+    .events .section-heading {
+      margin-bottom: 100px;
+    }
+  
+    .events .item {
+      background-color: #f1f0fe;
+      border-radius: 25px;
+      position: relative;
+      padding: 40px;
+      margin-bottom: 96px;
+    }
+  
+    .events .item .image {
+      position: relative;
+    }
+  
+    .events .item .image img {
+      position: absolute;
+      border-radius: 25px;
+      max-width: 260px;
+      left: 0;
+      top: -70px;
+    }
+  
+    .events .item ul li {
+      display: inline-block;
+      width: 17.5%;
+      vertical-align: middle;
+    }
+  
+    .events .item ul li:first-child {
+      width: 35%;
+    }
+  
+    .events .item ul li:nth-of-type(2) {
+      width: 28%;
+    }
+  
+    .events .item ul li span.category {
+      font-size: 14px;
+      
+      color: #0d142683;
+      background-color:#ffffff77;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  
+    .events .item ul li h4 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+  
+    .events .item ul li span {
+      display: inline-block;
+      font-size: 14px;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+  
+    .events .item ul li h6 {
+      font-size: 16px;
+      color: #0d142683;
+      font-weight: 600;
+    }
+  
+    .events .item a {
+      position: absolute;
+      right: 0;
+      top: 22px;
+      background-color: #0d142683;
+      width: 60px;
+      height: 120px;
+      display: inline-block;
+      text-align: center;
+      line-height: 120px;
+      font-size: 18px;
+      z-index: 1;
+      color: #fff;
+      border-radius: 60px 0px 0px 60px;
+    }
+  
+    .courses {
+      margin-top: 160px;
+    }
+  
+    .event_filter {
+      text-align: center;
+    }
+  
+    .event_filter {
+      background-color: #f1f0fe;
+      border-radius: 50px;
+      padding: 15px 40px;
+      list-style: none;
+      margin: 0 auto 70px;
+      max-width: max-content;
+    }
+  
+    .event_filter li {
+      display: inline-block;
+      margin: 0px 20px;
+    }
+  
+    .event_filter li a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e1e1e;
+      transition: all .3s;
+    }
+  
+    .event_filter li
+  
+    .event_filter li a.is_active,
+    .event_filter li a:hover {
+      color: #0d142683;
+    }
+  
+    .events_item .thumb {
+      position: relative;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+  
+    .events_item .thumb img {
+      margin-bottom: -5px;
+    }
+  
+    .events_item .thumb span.category {
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #0d142683;
+      background-color: rgba(250, 250, 250, 0.95);
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      display: inline-block;
+    }
+  
+    .events_item .thumb span.price {
+      position: absolute;
+      right: -30px;
+      top: -50px;
+      background-color: rgba(13, 20, 38, 0.52);
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: all .3s;
+    }
+  
+    .events_item .thumb span.price h6 {
+      margin-top: 72px;
+      margin-left: 22px;
+      font-size: 28px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 700;
+    }
+  
+    .events_item .thumb span.price em {
+      font-size: 18px;
+      font-weight: 500;
+      font-style: normal;
+      vertical-align: top;
+    }
+  
+    .events_item {
+      background-color: #25252541;
+      border-radius: 25px;
+      margin-bottom: 30px;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .events_item .down-content {
+      padding: 20px 30px 25px 30px;
+    }
+  
+    .events_item .down-content span.author {
+      color: #0d142683;
+      font-size: 15px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+  
+    .events_item .down-content h4 {
+      font-size: 22px;
+      font-weight: 600;
+      transition: all .3s;
+    }
+  
+    .events_item:hover .down-content h4 {
+      color: #a2b5e6a8;
+    }
+  
+    .events_item:hover .thumb span.price {
+      transform: scale(1.2);
+    }
+  </style>
+  
+
+
+
+ 
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+<main>
+   
+      
+
+    <div id="myCarousel" class="carousel slide mb-6 sticky-carousel" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'assets/images/banner-item-01.jpg' %}" class="d-block w-100" alt="premiere image">
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>With Mataba Spaces, Parking Becomes Easier and Smarter</h1>
+                <p class="opacity-75">We provide the best services for whoever wants to park. This is done by visualizing and then book a slot in your desired parking lot</p>
+                <p><a class="btn btn-lg btn-primary" href="{% url 'home' %}#all">See Parkings</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'assets/images/banner-item-02.jpg' %}" class="d-block w-100" alt="deuxieme image">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Lost and found objects</h1>
+                <p>You have, now the possibility of finding your lost objects at any of the parkings currently present on this platform. And in case you can't see any, you are free to ask and we will help you.</p>
+                <p><a class="btn btn-lg btn-secondary" href="{% url 'found_objects' %}">See the objects found</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'assets/images/banner-item-03.jpg' %}" class="d-block w-100" alt="troisieme image">
+            <div class="container">
+              <div class="carousel-caption text-end">
+                <h1>Let people see your parking</h1>
+                <p>Whether you have your standard parking or your fresh and brand new parking, we usually schedule a general period to add the new ones</p>
+                <p><a class="btn btn-lg btn-primary" href="{% url 'contact' %}#contact">Add my parking</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
+      <hr class="featurette-divider">
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img  src="{% static 'assets/images/service-01.png'%}" class="bd-placeholder-img rounded-circle" alt="online degrees">
+        <h2 class="fw-normal">Security Improved</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="{% url 'about' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img  src="{% static 'assets/images/service-02.png'%}" class="bd-placeholder-img rounded-circle" alt="online degrees">
+        
+        <h2 class="fw-normal">Dynamic Payment</h2>
+        <p>Your bill will be based on the exact total period of time you spend at a parking lot</p>
+        <p><a class="btn btn-secondary" href="{% url 'about' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img  src="{% static 'assets/images/service-03.png'%}" class="bd-placeholder-img rounded-circle" alt="online degrees">
+
+        <h2 class="fw-normal">Easy to go !</h2>
+        <p>When in case of not being aware of the location of a parking, No need to worry. We are directing you to the Google maps for exact location and directions</p>
+        <p><a class="btn btn-secondary" href="{% url 'about' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    <hr class="featurette-divider">
+     
+    
+
+    <div class="courses" id="courses" >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <div class="section-heading">
+                <h6>Real time Availability</h6>
+                <h2 id="all">The Parkings</h2>            
+                {% if npark  %}
+                    <h6>There are {{npark}} parkings found </h6>
+                {% elif mpark %}
+                    <h6>There is only {{mpark}} parking found </h6>
+                {% else %}  
+                    <h6>There is no ParkingArea found</h6>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <ul class="event_filter">
+            <li>
+              <a href="{% url 'home' %}?q={{city.name}}#all">Show All</a>          
+            </li>
+            {% for city in cities %}
+            <li>
+                <a href="{% url 'home' %}?q={{city.name}}#all">{{city.name}}</a>
+            </li> 
+            {% endfor %}
+            
+          </ul>
+          <div class="row event_box" >
+            {% for parking in parkings %}
+            <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
+                <div class="events_item">
+                  <div class="thumb">
+                    <a href="{% url 'parking' parking.id %}"><img src="{{ parking.photo.url }}" alt="Image"></a>
+                    <span class="category text-secondary">
+                        <a class="text-danger opacity-80"href="{{parking.share_location}}">
+                        <i class="zmdi zmdi-pin text-danger"></i> Go Maps
+                        </a>
+                    </span>
+                    <span class="price mx-3 mt-1"><h6 class=""><em>🅿</em>{{parking.available_slots }}/{{parking.total_slots }}</h6></span>
+                  </div>
+                  <div class="down-content">
+                    <span class="author"><a href="{% url 'pricing' parking.id %}">Pricing</a></span>
+                    <h4>{{parking.name}}</h4>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+        
+          </div>
+        </div>
+    </div>
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading lh-2">Minimizing the number of <span class="text-body-secondary">Stressed People</span></h2>
+        <p class="h6">This online parking reservation platform improves parking management by providing real-time visibility of available spaces, which optimizes space usage and reduces user frustration. With email notifications for security (entry, exit, ticket) and dynamic payments based on the exact number of hours parked, it ensures transparency and fair pricing. Additionally, the lost and found section, where users can report and recover items through the app, enhances the overall experience and builds trust in the service. This modern solution meets user needs and contributes to more efficient and secure parking management, benefiting society as a whole.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{%static 'assets/images/event-003.jpg'%}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="web experts">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">Real-Time Visibility of <span class="text-body-secondary"> Available Spaces</span></h2>
+        <p class="h6">Real-time visibility of available spaces is a key feature of our online parking reservation platform. Users can easily see which spaces are free or reserved at any time, reducing the time spent searching for a spot and improving travel efficiency. With an intuitive interface and real-time updates, users enjoy a smooth, stress-free experience. This feature also allows parking managers to optimize space usage, increasing profitability.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="{%static 'assets/images/event-001.jpg'%}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="web experts">
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1"> Dynamic Payment and <span class="text-body-secondary">Email Notifications</span></h2>
+        <p class="h6">To enhance security and transparency, our platform sends email notifications for important parking events: entry, exit, and ticket issuance. These notifications keep users informed about their parking status. The payment system is dynamic, calculating the exact fees based on the actual hours parked. This prevents unfair fixed fees and ensures users only pay for the time they use, making the service fair and attractive.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{%static 'assets/images/banner-item-04.jpg'%}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="web experts">
+
+      </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1"> Lost and Found <span class="text-body-secondary"> Management</span></h2>
+        <p class="h6">The lost and found section is another innovative feature of our platform. If an item is found by the cleaning service, the parking manager can report it on the app with a description and photo. Users can also report lost items not yet visible by providing details like description, photo, date, and the parking location. This feature improves user satisfaction and builds trust in the service by offering a convenient solution for recovering lost items. It shows the platform's commitment to providing a comprehensive, customer-focused service.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{%static 'assets/images/event-002.jpg'%}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="web experts">
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+    <div class="team section" id="team">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6">
+              <div class="team-member text-center">
+                <div class="main-content">
+                  <img src="{% static 'assets/images/ciku.jpg' %}" alt="">
+                  <span class="category">Director & Engineer at CikuruSpaces</span>
+                  <h4 class="text-white">Arnold Cikuru Mataba</h4>
+                  <ul class="social-icons">
+                    <li><a href="https://m.facebook.com/ar.mt.948?mibextid=LQQJ4d"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://x.com/CikuruArnold"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://wa.me/qr/WY4EAO6RZVG3G1"><i class="fab fa-whatsapp"></i></a></li>
+                    <li><a href="https://www.instagram.com/arnold_cikuru"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/arnold-ciku-b30a5a265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+
+  </div><!-- /.container -->
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+{% endblock content%}

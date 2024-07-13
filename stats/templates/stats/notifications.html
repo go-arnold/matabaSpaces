@@ -1,0 +1,29 @@
+{% extends "new_main.html" %}
+{% block content %}
+        
+        <div class="container">
+                <h1 class="text-center display-5 title-section">Notifications</h1>
+                            
+                <div class="card-columns">
+                  {% for notif in notifs %}
+                        <div class="card">
+                                <img class="card-img-top" src="{{ notif.image.url }}" alt="notif">
+                                <div class="card-body">
+                                        <h5 class="card-title">{{notif.header}}</h5>
+                                        <p class="card-text">{{notif.body}} </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Received at {{notif.created_at}}</li>
+                                        
+                                </ul>
+                                <div class="card-body text-center">
+                                        
+                                </div>
+                        </div>   
+                </div> 
+                  {% endfor %}
+        </div>
+            
+
+        
+{% endblock %}

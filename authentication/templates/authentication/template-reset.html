@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hello {{user.first_name}},
+
+We received a password reset request from your account at {{protocol}}://{{domain}} ,click the link below
+to finish up the process.
+
+{{protocol}}://{{domain}}{% url 'reset-confirm' uidb64=uid token=token %}
+
+Remember that the above link can only be used once !!
+
+If you did not make this request you can only ignore it.
+
+matabaSpaces !
+
+{% endautoescape %}

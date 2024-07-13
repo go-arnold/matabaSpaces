@@ -1,0 +1,597 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}  
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <span class="category">Our goals</span>
+                <h2>With CikuruSpaces, Parking Becomes Easier and Smarter</h2>
+                <p>We provide the best the best services for whoever wants to park. This is done by visualizing and then book a slot in your desired parking lot</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#all">See Parkings</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#about"><i class="fa fa-play"></i> What's MatabaSpaces?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-2">
+              <div class="header-text">
+                <span class="category">Search Objects</span>
+                <h2>Lost and found objects</h2>
+                <p>You have,now the possibilty of findind your lost objects at any of the parkings currently present on this platform. And in case you can see any, you are free to ask and we will help you .</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="{% url 'found_objects' %}">See Found Objects</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i>How do I proceed?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-3">
+              <div class="header-text">
+                <span class="category">New parking</span>
+                <h2>Let people see your parking</h2>
+                <p>Whether your have your standard parking or your fresh and brand new parking, we usually schedule a general period to add the new ones</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#contact">Add my parking</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#contact"><i class="fa fa-play"></i> Help on adding the new parking</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Real time Availability</h6>
+            <h2 id="all">The Parkings</h2>            
+            {% if npark  %}
+                <h6>There are {{npark}} parkings found </h6>
+            {% elif mpark %}
+                <h6>There is only {{mpark}} parking found </h6>
+            {% else %}  
+                <h6>There is no ParkingArea found</h6>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a href="{% url 'home' %}?q={{city.name}}#all">Show All</a>          
+        </li>
+        {% for city in cities %}
+        <li>
+            <a href="{% url 'home' %}?q={{city.name}}#all">{{city.name}}</a>
+        </li> 
+        {% endfor %}
+        
+      </ul>
+      <div class="row event_box" >
+        {% for parking in parkings %}
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
+            <div class="events_item">
+              <div class="thumb">
+                <a href="{% url 'parking' parking.id %}"><img src="{{ parking.photo.url }}" alt="Image"></a>
+                <span class="category"><a href="{{parking.share_location}}">Go Maps📍</a></span>
+                <span class="price"><h6><em>🅿</em>{{parking.occupancy }}</h6></span>
+              </div>
+              <div class="down-content">
+                <span class="author"><a href="{% url 'pricing' parking.id %}">Pricing</a></span>
+                <h4>{{parking.name}}</h4>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    
+      </div>
+    </div>
+  </section>
+
+  <div class="services section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{% static 'assets/images/service-01.png'%}" alt="online degrees">
+            </div>
+            <div class="main-content">
+              <h4>Security Improved</h4>
+              <p>Whenever a car or vehicle gets in ou out of a parking slot,notification is sent directly to the owner. </p>
+              <div class="main-button">
+                <a href="#about">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{%static 'assets/images/service-02.png'%}" alt="short courses">
+            </div>
+            <div class="main-content">
+              <h4>Dynamic Payment</h4>
+              <p>Your bill will be based on the exact total period of time you spend at a parking lot</p>
+              <div class="main-button">
+                <a href="#about">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{%static 'assets/images/service-03.png'%}" alt="web experts">
+            </div>
+            <div class="main-content">
+              <h4>Easy to go !</h4>
+              <p>When in case of not being aware of the location of a parking, No need to worry. We are directing you to the Google maps for exact location and directions</p>
+              <div class="main-button">
+                <a href="#about">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section about-us" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Where shall we begin?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    We started with a simple idea: to make parking easier and more efficient for everyone. Our platform allows parking owners to showcase their spaces, and drivers to find and reserve spots effortlessly.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How do we work together?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Collaboration</strong> is key to our success. We work closely with parking lot owners to ensure their spaces are accurately represented. Our team continuously updates the platform to provide <code>real-time availability</code> and the best user experience for drivers.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Why Are We Among The Best?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Our platform offers a range of features to enhance your parking experience:
+                    <ul>
+                    <li><strong>Lost and Found System</strong>: Easily report and find lost items.</li>
+                    <li><strong>Cleaning System</strong>: Ensure your parking spot is clean and well-maintained.</li>
+                    <li><strong>Reservation System</strong>: Book your spot in advance with ease.</li>
+                    <li><strong>Visualization</strong>: See real-time availability and location of parking spots.</li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    What Are Our Motivations?
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    We are driven by the desire to simplify parking for everyone. Our goal is to reduce the stress of finding a parking spot, save time, and provide a seamless experience for both parking lot owners and drivers.<code> We believe that better parking management can lead to better cities and communities.</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>About Us matabaSpaces</h6>
+            <h2>What Makes Us A Good Parking Management Platform?</h2>
+            <p>We strive to <strong>revolutionize</strong> parking management by offering a seamless and user-friendly platform. Our system connects parking lot owners with drivers, providing real-time information and easy reservations. We are committed to making parking <code>stress-free</code> and efficient for everyone.<p>
+
+            <div class="main-button">
+              <a href="#contact">Contact us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="section fun-facts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="" data-speed="1000"></h2>
+                   <p class="count-text ">Stressed Drivers</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="100" data-speed="1000"></h2>
+                  <p class="count-text ">Percentage of fluidity on the roads</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="24" data-speed="1000"></h2>
+                  <p class="count-text ">Daily real-time</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter end">
+                  <h2 class="timer count-title count-number" data-to="100" data-speed="1000"></h2>
+                  <p class="count-text ">Experience</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="{% static 'assets/images/ciku.jpg'%}" alt="">
+              <span class="category">Engineer at MatabaSpaces</span>
+              <h4>Arnold CIkuru Mataba</h4>
+              <ul class="social-icons">
+                <li><a href="https://m.facebook.com/ar.mt.948?mibextid=LQQJ4d"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://x.com/CikuruArnold"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://wa.me/qr/WY4EAO6RZVG3G1"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="https://www.instagram.com/arnold_cikuru"><i class="fab fa-instagram"></i></a></li>                
+                <li><a href="https://www.linkedin.com/in/arnold-ciku-b30a5a265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div> 
+
+  <div class="section testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="owl-carousel owl-testimonials">
+            <div class="item">
+              <p>“Please tell your friends, drivers and collegues that we have now a new and smarter way of parking, I lived it.”</p>
+              <div class="author">
+                <img src="{% static 'assets/images/testimonial-author2.jpg'%}" alt="">
+                <span class="category">Seller</span>
+                <h4>Maman Pelagie</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>“I do like saving time and I can ensure that it is difficult to think of somethng smarter than this when it comes to parkings.”</p>
+              <div class="author">
+                <img src="{% static 'assets/images/testimonial-author1.jpg'%}" alt="">
+                <span class="category">Econimist</span>
+                <h4>Arcade Murhula Mataba</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>“I left keys at Cathedrale Parking but grace to this platfom I got them Easily”</p>
+              <div class="author">
+                <img src="{% static 'assets/images/testimonial-author3.jpg'%}" alt="">
+                <span class="category">Engineer</span>
+                <h4>Armand Cito Mataba</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>TESTIMONIALS</h6>
+            <h2>What they say about us?</h2>
+            <p>You are not only hearing from us , Read what people think of our platfom and its services</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section events" id="events">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Schedule</h6>
+            <h2>Upcoming Events</h2>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-6">
+          <div class="item">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="image">
+                  <img src="{% static 'assets/images/event-001.jpg'%}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <ul>
+                  <li>
+                    <span class="category">New Features</span>
+                    <h4>Adding User Subscription </h4>
+                  </li>
+                  <li>
+                    <span>Date:</span>
+                    <h6>16 sept 2024</h6>
+                  </li>
+                  <li>
+                    <span>Advantages:</span>
+                    <h6>Park in group or familly</h6>
+                  </li>
+                  <li>
+                    <span>Price:</span>
+                    <h6>Reduced</h6>
+                  </li>
+                </ul>
+                <a href="#contact"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-6">
+          <div class="item">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="image">
+                  <img src="{% static 'assets/images/event-002.jpg'%}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <ul>
+                  <li>
+                    <span class="category">Suggested</span>
+                    <h4>Applying suggested changes</h4>
+                  </li>
+                  <li>
+                    <span>Date:</span>
+                    <h6>24 Sept 2024</h6>
+                  </li>
+                  <li>
+                    <span>Other:</span>
+                    <h6>To be communicated</h6>
+                  </li>
+                  <li>
+                    <span>I need to suggest<span>
+                    <h6>Click here 👉</h6>
+                  </li>
+                </ul>
+                <a href="#contact"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-6">
+          <div class="item">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="image">
+                  <img src="{% static 'assets/images/event-003.jpg'%}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <ul>
+                  <li>
+                    <span class="category">Parking</span>
+                    <h4>Adding all applied and confirmed new parkings</h4>
+                  </li>
+                  <li>
+                    <span>Date:</span>
+                    <h6>12 Nov 2024</h6>
+                  </li>
+                  <li>
+                    <span>Status</span>
+                    <h6>Pending</h6>
+                  </li>
+                  <li>
+                    <span>Application</span>
+                    <h6>Pending, you can still ask for adding yours</h6>
+                  </li>
+                </ul>
+                <a href="#contact"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-us section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  align-self-center">
+          <div class="section-heading">
+            <h6>Contact Us</h6>
+            <h2>Feel free to contact us anytime</h2>
+            <p>Have any questions or need assistance? We're here to help! Whether you're a parking lot owner looking to join our platform or a driver in need of support, don't hesitate to reach out.Our team is ready to assist you with any inquiries or issues you may have. We look forward to hearing from you!</p>
+            
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-us-content">
+            <form id="contact-form" method="POST" action="{% url 'contact' %}">
+              {% csrf_token %}
+              {% for message in messages %}
+                  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+              <div class="row">
+                  <div class="col-lg-12">
+                      <fieldset>
+                          <input type="text" name="name" id="name" placeholder="Your Name..." required>
+                      </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                      <fieldset>
+                          <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required>
+                      </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                      <fieldset>
+                          <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                      </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                      <fieldset>
+                          <button type="submit" id="form-submit" class="orange-button">Send Message Now</button>
+                      </fieldset>
+                  </div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+
+<!--
+
+<div class="container-xxl my-md-2 homee">
+    <div class="row d-flex justify-content-md-between ">
+
+        <div class="my-md-2 col-md-3 flex-sm-fill">
+            <div class="p-5 bg-light shadow-sm">
+                <div >
+                    <h3>Search with Cities</h3>
+                    <div><a href="{% url 'home' %}">All Cities</a></div>
+                    <hr>
+                    {% for city in cities %}
+                    <div><a href="{% url 'home' %}?q={{city.name}}">{{city.name}}</a></div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div> 
+
+        <div class="my-md-2 col-md-6 flex-sm-fill">
+            <div class="p-5 bg-light shadow-sm">
+                <div >
+                    <h1>Parkings</h1>
+                    {% if npark  %}
+                       <div>There are {{npark}} parkings found </div>
+                    {% elif mpark %}
+                      <div>There is only {{mpark}} parking found </div>
+                    {% else %}  
+                     <div>There is no ParkingArea found</div>
+                    {% endif %}
+                
+                    <hr>
+                    
+                    {% for parking in parkings %}
+                    <div>
+                        <h5><a href="{% url 'parking' parking.id %}">{{parking.name}}</a></h5>
+                        <h5>Workingtime: {{parking.workingtime}}</h5>
+                        <h5>{{parking.location}}</h5>
+                
+                        <h5><a href="{% url 'pricing' parking.id %}">Pricing</a></h5> 
+                
+                        <img class="img-fluid" src="{{ parking.photo.url }}" alt="Image">
+                        <hr>
+                    </div>
+                    {% endfor %}
+                    </div>
+            </div>
+        </div> 
+
+        <div class="my-md-2 col-md-3 flex-sm-fill">
+            <div class="p-5 bg-light shadow-sm">
+                <div >
+                    <h3>Availability places per parking</h3>
+                    {% for parking in parks %}
+                        <div>
+                            <h4><a href="{% url 'parking' parking.id %}">{{parking.name}}</a></h4>
+                            <p>Available Slots: {{parking.available_slots }} / {{ parking.total_slots }}</p>
+                            
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>   
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

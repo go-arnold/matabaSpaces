@@ -1,0 +1,59 @@
+{% load static %}
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'home' %}" class="logo">
+                        
+                        <h1><img src="{%static 'assets/images/design.png'%}" alt="short courses"></h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Search Start ***** -->
+                    <div class="search-input">
+                      <form id="search" method="GET" action="{% url 'home' %}#all">
+                        <input type="text" id='searchText' onkeypress="handle" name="q" placeholder="Search parkings"/>
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach ends ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="{% url 'home' %}" class="active">Home</a></li>                      
+                      <li class="scroll-to-section"><a href="{% url 'statistics'%}">Statistics</a></li>
+                      <li class="scroll-to-section"><a href="{% url 'home' %}about">About Us</a></li>                      
+                      {% if request.user.is_authenticated %}
+                      <li class="scroll-to-section"><a href="{% url 'found_objects' %}">Lost something?</a></li>
+                      <li class="scroll-to-section"><a href="{% url 'change' %}">Profile</a></li>
+                      <li class="scroll-to-section"><a href="{% url 'logout' %}">Logout</a></li>
+                      {% else %}
+                      <li class="scroll-to-section"><a href="{% url 'login' %}">Login Now!</a></li>
+                      {% endif %}
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  {% for message in messages %}    
+    {% if message.tags == 'error' %}
+    <div class=" p-2 my-2 mx-5 border-start border-end border-danger border-5 text-danger rounded justify-content-center d-flex align-items-center" >        
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle me-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" /></svg>  
+      <div>{{message}}</div>
+    </div>
+    {% else %}
+    <div class="p-2 my-2 mx-5 border-start border-end border-success border-5 text-success rounded justify-content-center d-flex" >  
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check me-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>      
+        <div>{{message}}</div>
+    </div>
+    {% endif %}
+  {% endfor %}
+  

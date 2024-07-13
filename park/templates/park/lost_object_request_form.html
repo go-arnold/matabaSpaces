@@ -1,0 +1,48 @@
+{% extends 'new_main.html' %}
+{% block content %}
+{% load static %}
+
+
+
+
+<div class="card mx-auto card-authentication1 my-2">
+    <div class="card-body">
+    <div class="card-title">Have you found ?</div>
+    <hr>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="input-2">Description</label>
+        <textarea type="text" class="form-control" name="description" id="input-2" placeholder="Describe now the lost object" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="input-4">On </label>
+        <input type="date" class="form-control" id="input-4" name="date" required>
+    </div>
+
+    <div class="form-group">
+        <label for="input-5">At the</label>
+        <select name="parking" id="input-5" required>
+            <option value="">--Please choose parking--</option>
+            {% for parking in parkings %}
+                <option class="text-white" value="{{ parking.name }}">{{ parking.name }}</option>
+            {% endfor %}
+        </select>
+    </div>      
+    
+
+    <div class="form-group">
+     <label for="input-3">Image</label>
+     <input type="file"  class="form-control" id="input-3" name="photo" placeholder="Add the image" required>     
+    </div>
+    
+    <div class="form-group">
+     <button type="submit" class="btn btn-light px-5"><i class="zmdi zmdi-navigation"></i> Send Request</button>
+   </div>
+   </form>
+  </div>
+ 
+{% endblock %}
+
+
