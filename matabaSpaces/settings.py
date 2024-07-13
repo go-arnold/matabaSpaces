@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['cikuru-spaces-k6fz.onrender.com']
+ALLOWED_HOSTS = ['cikuru-spaces-k6fz.onrender.com','localhost']
 #ALLOWED_HOSTS = []
 
 # Application definition
