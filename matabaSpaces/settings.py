@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['cikuru-spaces-k6fz.onrender.com','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','172.20.10.12','localhost', '192.168.1.73','192.168.1.85']
 #ALLOWED_HOSTS = []
 
 # Application definition
@@ -97,12 +97,8 @@ WSGI_APPLICATION = 'matabaSpaces.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'spacesdb',
-        'USER': 'Armand',
-        'PASSWORD': 'ArmCito2024+MySQL',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
