@@ -47,7 +47,7 @@ def reserve_slot(request, pk):
         messages.success(request, 'Reservation created successfully')
         return redirect('parking', parking_area_id=parking_area.id)
     
-    check_expired_reservations()
+    
     context = {
         'slot': slot,
         'parking_area': parking_area,

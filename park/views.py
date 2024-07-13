@@ -14,6 +14,7 @@ from .models import ParkingArea
 from django.db.models import Count
 from django.db.models.functions import ExtractHour
 from reservation.models import Reservation
+from reservation.tasks import check_expired_reservations
 
 
 import matplotlib
@@ -296,7 +297,7 @@ def slot_data(request, parking_area_id):
     slots = Slot.objects.filter(area=parking)
     are_booked=Slot.objects.filter(area=parking, is_booked=True).count()
     libre = (parking.occupancy) - are_booked
-    
+    check_expired_reservations()
     slot_data = [
         {
             'slot_number': slot.slot_number,
