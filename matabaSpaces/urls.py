@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import handler404, handler500, handler403, handler400
 from stats import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('park.urls')),
@@ -10,7 +11,9 @@ urlpatterns = [
     path('', include('reservation.urls')),
     path('extra/', include('stats.urls')),
     #path('accounts/', include('django.contrib.auth.urls')),
+    
 ]
+urlpatterns += staticfiles_urlpatterns()
 
 
 admin.site.site_header="🚘🅿matabaSPACES"
