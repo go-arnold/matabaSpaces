@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Profile</title>
+  <title>CikuruSpaces</title>
   <!-- loader-->
   <link href="{% static 'dashtreme-master/assets/css/pace.min.css' %}" rel="stylesheet"/>
   <script src="{% static 'dashtreme-master/assets/js/pace.min.js' %}"></script>
@@ -50,6 +50,11 @@
     <li>
       <a href="{% url 'home'%}">
         <i class="zmdi zmdi-view-dashboard text-info"></i> <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'home'%}#all">
+        <i class="zmdi zmdi-car text-primary"></i> <span>See parkings</span>
       </a>
     </li>
     {% if request.user.is_authenticated %}

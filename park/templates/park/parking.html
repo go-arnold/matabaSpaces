@@ -95,15 +95,15 @@
             
             {% if reservations %}
                 
-             {% if reservation.request.user %}<div class="text-center mb-2">Your reservation(s) on this parking Area</div>{% endif %}
+              <div class="text-center mb-2">Your reservation(s) on this parking Area</div>
                 {% for reservation in reservations %}
                     {% if reservation.is_active %}
                         {% if reservation.user == request.user %}
-                        <p class="text-center mb-2"> Slot number {{reservation.slot.slot_number}},reservation has been made on {{reservation.start_time}} and expires at
+                        <p class="text-center mb-2"> Slot number {{reservation.slot.slot_number}},reservation made on {{reservation.start_time}} and supposed to end at
                             {{reservation.end_time}}: {{reservation.price}} Rwf.</p>
                         {% endif %}
                     {% endif%}
-                {% endfor %}.
+                {% endfor %}
             {% endif %}    
             
 
@@ -147,7 +147,6 @@
                             {% endif %}
                     {% endfor %}
                     
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     {% for slot in slots %}
@@ -194,6 +193,17 @@
                             {% endif %}
                         {% endif %}    
                     {% endfor %}
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 11 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
                     
                 </div>
                 <div class="small-column">
@@ -214,7 +224,17 @@
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 12 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -238,7 +258,17 @@
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 13 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
                 </div>
                 <div class="small-column">
                     {% for slot in slots %}
@@ -255,9 +285,8 @@
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     {% for slot in slots %}
-                        {% if slot.slot_number == 11 %}
+                        {% if slot.slot_number == 7 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -268,7 +297,7 @@
                         {% endif %}    
                     {% endfor %}
                     {% for slot in slots %}
-                        {% if slot.slot_number == 12 %}
+                        {% if slot.slot_number == 14 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -279,7 +308,18 @@
                         {% endif %}    
                     {% endfor %}
                     {% for slot in slots %}
-                        {% if slot.slot_number == 13 %}
+                        {% if slot.slot_number == 15 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 16 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -311,10 +351,17 @@
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                    <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                </div>
-                <div class="small-column">
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 17 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
                     {% for slot in slots %}
                         {% if slot.slot_number == 6 %}
                             {% if slot.is_booked %}
@@ -326,12 +373,25 @@
                             {% endif %}
                         {% endif %}    
                     {% endfor %}
+                </div>
+                <div class="small-column">
+                    {% for slot in slots %}
+                        {% if slot.slot_number == 18 %}
+                            {% if slot.is_booked %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                            {% elif slot.status %}
+                                <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                            {% else %}
+                                <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                            {% endif %}
+                        {% endif %}    
+                    {% endfor %}
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
                     {% for slot in slots %}
-                        {% if slot.slot_number == 14 %}
+                        {% if slot.slot_number == 19 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -342,7 +402,7 @@
                         {% endif %}    
                     {% endfor %}
                     {% for slot in slots %}
-                        {% if slot.slot_number == 15 %}
+                        {% if slot.slot_number == 20 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -353,7 +413,7 @@
                         {% endif %}    
                     {% endfor %}
                     {% for slot in slots %}
-                        {% if slot.slot_number == 16 %}
+                        {% if slot.slot_number == 21 %}
                             {% if slot.is_booked %}
                                 <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                             {% elif slot.status %}
@@ -517,7 +577,7 @@
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
           </div>
           <div class="small-column">
-                    {% for slot in slots %}
+                {% for slot in slots %}
                     {% if slot.slot_number == 4 %}
                         {% if slot.is_booked %}
                             <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
@@ -532,10 +592,7 @@
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-                {% for slot in slots %}
+              {% for slot in slots %}
                     {% if slot.slot_number == 11 %}
                         {% if slot.is_booked %}
                             <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
@@ -558,7 +615,40 @@
                     {% endif %}    
                 {% endfor %}
                 {% for slot in slots %}
-                {% if slot.slot_number == 13 %}
+                    {% if slot.slot_number == 13 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                    {% if slot.slot_number == 14 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                    {% if slot.slot_number == 15 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                {% if slot.slot_number == 16 %}
                     {% if slot.is_booked %}
                         <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
                     {% elif slot.status %}
@@ -590,11 +680,61 @@
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
               <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
-              <div class="car"><i class="zmdi zmdi-car-wash"></i></div>
+              {% for slot in slots %}
+                    {% if slot.slot_number == 17 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+              {% endfor %}
+              {% for slot in slots %}
+                    {% if slot.slot_number == 18 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                    {% if slot.slot_number == 19 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                    {% if slot.slot_number == 20 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
+                {% for slot in slots %}
+                    {% if slot.slot_number == 21 %}
+                        {% if slot.is_booked %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-info"></i></div>
+                        {% elif slot.status %}
+                            <a href="{% url 'select' slot.id %}"><div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-success"></i></div></a>
+                        {% else %}
+                            <div id="slot-{{ slot.slot_number }}" class="car"><i class="zmdi zmdi-car text-danger"></i></div>
+                        {% endif %}
+                    {% endif %}    
+                {% endfor %}
           </div>
           
       </div>

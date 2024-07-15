@@ -52,6 +52,11 @@
        <i class="zmdi zmdi-view-dashboard text-info"></i> <span>Home</span>
      </a>
    </li>
+   <li>
+    <a href="{% url 'home'%}#all">
+      <i class="zmdi zmdi-car text-primary"></i> <span>See parkings</span>
+    </a>
+  </li>
    {% if request.user.is_authenticated %}
    <li>
      <a href="{% url 'found_objects'%}">

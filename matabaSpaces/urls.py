@@ -16,9 +16,9 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 
 
-admin.site.site_header="🚘🅿matabaSPACES"
-admin.site.site_title="mataba"
-admin.site.index_title="The SuperAdmin Area of MatabaSPACES"
+admin.site.site_header="🚘🅿cikuruSPACES"
+admin.site.site_title="cikuru"
+admin.site.index_title="The SuperAdmin Area of CikuruSPACES"
 
 handler404 = 'stats.views.custom_404_view'
 handler500 = 'stats.views.custom_500_view'

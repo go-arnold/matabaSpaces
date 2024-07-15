@@ -122,13 +122,15 @@ def parking(request, parking_area_id):
             'hour': hour,
             'percentage': percentage
         })
-    reservations=Reservation.objects.filter(parking_area=parking)
+    reservations=Reservation.objects.filter(parking_area=parking,user=request.user)
+    
     context = {
         'parking': parking,
         'occupancy_percentage': json.dumps(occupancy_percentage, cls=DjangoJSONEncoder),
         'slots':slots,
         'libre':libre,
         'reservations':reservations,
+        'user':request.user,
     }
     
    
