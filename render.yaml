@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: mataba-spaces
+    env: python
+    buildCommand: "
+      pip install -r requirements.txt &&
+      python manage.py collectstatic --noinput &&
+      python manage.py migrate
+    "
+    startCommand: gunicorn matabaSpaces.wsgi:application --bind 0.0.0.0:$PORT
+    staticPublishPath: staticfiles
