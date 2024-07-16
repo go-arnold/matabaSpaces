@@ -142,7 +142,7 @@ def pricing(request,pk):
     return render(request,'park/pricing.html',context)
 
 
-@login_required
+@login_required(login_url='login')
 def occupy_slot(request, slot_id):
     slot = get_object_or_404(Slot, id=slot_id)
     if slot.status and not slot.is_booked:
@@ -165,7 +165,7 @@ def get_slot_price(parking_area, slot_number):
         return parking_area.pricelvl3
 
 
-@login_required
+@login_required(login_url='login')
 @permission_required('park.add_foundobject', raise_exception=True)
 def add_found_object(request):
     accepted_image_formats = ".jpg, .png, .gif, .bmp, .tiff, .svg, .webp, .raw, .psd, .ai"
@@ -198,7 +198,7 @@ def add_found_object(request):
     }
     return render(request, 'park/add_found_object.html', context)
 
-@login_required
+@login_required(login_url='login')
 def lost_object_request_view(request):
     accepted_image_formats = ".jpg, .png, .gif, .bmp, .tiff, .svg, .webp, .raw, .psd, .ai"
     parkings = ParkingArea.objects.all()
@@ -230,7 +230,7 @@ def lost_object_request_view(request):
     }
     return render(request, 'park/lost_object_request_form.html', context)
 
-@login_required
+@login_required(login_url='login')
 def my_lost_requests(request):
     lost_requests = LostRequest.objects.filter(user=request.user)
     responded=LostRequest.objects.filter(is_responded=True,user=request.user).count()
@@ -263,7 +263,7 @@ def delete_found_object(request, pk):
     messages.success(request, 'Found object has been successfully deleted.')
     return redirect('found_objects')
 
-@login_required
+@login_required(login_url='login')
 def found_objects(request):
     user = request.user    
     objects = FoundObject.objects.all()

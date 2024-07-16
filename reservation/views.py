@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from .tasks import check_expired_reservations
 
 
-@login_required
+@login_required(login_url='login')
 def reserve_slot(request, pk):
     
     slot = get_object_or_404(Slot, id=pk)
@@ -56,7 +56,7 @@ def reserve_slot(request, pk):
     return render(request, 'reservation/reserve.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def selectSlot(request,pk):
     slot = get_object_or_404(Slot, id=pk)
     parking_area = slot.area
@@ -78,7 +78,7 @@ def send_reservation_email(reservation):
     )
     email.send()
 
-@login_required
+@login_required(login_url='login')
 def release_slot(request, slot_id):
     slot = get_object_or_404(Slot, id=slot_id)
 
