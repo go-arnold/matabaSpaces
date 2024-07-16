@@ -151,5 +151,8 @@ def custom_403_view(request, exception):
 def custom_400_view(request, exception):
     return render(request, '400.html', status=400)
 
+def howto (request):
+    return render(request,'stats/howto.html',{})
+
 
     

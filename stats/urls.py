@@ -7,6 +7,7 @@ urlpatterns = [
     path('notif/', views.notifications, name='notif'),
     path('about/', views.about, name='about'),
     path('calendar/', views.calendar, name='calendar'),
+    path('help/', views.howto, name='help'),
     
     
 ]

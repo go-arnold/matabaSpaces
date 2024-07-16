@@ -1,0 +1,105 @@
+{% extends "new_main.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">How to Use CikuruSpaces Parking Platform</h1>
+
+    <section>
+        <h2 class="text-primary">Overview</h2>
+        <p>Welcome to CikuruSpaces, your go-to platform for seamless parking reservations. Our system is designed to improve your parking experience with real-time availability, dynamic payments, and comprehensive security features. Whether you are a frequent commuter or an occasional driver, our platform ensures that you can find, reserve, and pay for parking with ease and transparency. Below, you'll find detailed instructions on how to use our platform effectively and make the most out of its features.</p>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-info">Real-Time Visibility of Available Spaces</h2>
+        <p>One of the key features of our platform is the real-time visibility of available parking spaces. This feature allows you to see which parking spots are free or reserved at any given moment, reducing the time and stress involved in finding a parking spot. Here's how you can make use of this feature:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Log into your CikuruSpaces account. If you don't have an account yet, you can easily  <a href="{% url 'register'%}" class="text-warning" >create one by following the registration process.</a></li>
+            <li class="list-group-item">Navigate to the <a href="{% url 'home' %}#all" class="text-warning" >See parking</a> section, which is accessible from the main menu.</li>
+            <li class="list-group-item">On the map, you will see the real-time status of all parking spots in your selected area. Green markers indicate available spots, while red markers indicate  occupied spots and blue for reserved.</li>
+            <li class="list-group-item">Click on an available spot to view more details, such as the exact location, price, and any additional amenities offered.</li>
+            <li class="list-group-item">Once you find a suitable spot, click 'Reserve' to book it. You will receive a confirmation email with the details of your reservation.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-primary">Dynamic Payment System</h2>
+        <p>Our dynamic payment system ensures that you are charged fairly based on the exact amount of time you spend parked. This feature eliminates the need for fixed fees and ensures transparency in billing. Here’s how it works:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Upon arrival at the parking lot, use the CikuruSpaces app to check in. This will start the timer for your parking session.</li>
+            <li class="list-group-item">As you go about your activities, the system will keep track of the time your vehicle is parked. You can view the elapsed time and estimated cost in real-time through the app.</li>
+            <li class="list-group-item">When you are ready to leave, simply check out using the app.</li>
+            <li class="list-group-item">You will receive an email notification with the payment details. The notification will include a breakdown of the hours parked and the corresponding charges.</li>
+            <li class="list-group-item">Proceed to pay through our secure online payment gateway. We accept various payment methods, including momopay, airtel money and debit cards.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-info">Security Features</h2>
+        <p>We take your security seriously. Our platform sends email notifications for every entry and exit of your vehicle, as well as for any significant movement within the parking lot. These security features ensure that you are always aware of your vehicle's status and can take immediate action if something seems amiss. To make the most of these security features:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Make sure your email address is up to date in your profile settings. You can update your contact information at any time by accessing the <a href="{% url 'change'%} " class="text-warning" >Profile</a> section in the app.</li>
+            <li class="list-group-item">Notifications in your account settings to ensure you receive real-time alerts. This includes notifications for entry, exit, and any detected movement of your vehicle.</li>
+            <li class="list-group-item">Check your email regularly for any security alerts. Each alert will provide details about the time and nature of the activity.</li>
+            <li class="list-group-item">If you receive a notification about unexpected movement or entry/exit, you can use the web app to contact parking lot security immediately. Our platform also logs all activities, so you can review the history of alerts and take necessary actions.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-primary">Lost and Found Management</h2>
+        <p>Our lost and found section helps you recover lost items efficiently. If an item is found by our cleaning service, it will be reported on the app, ensuring a high chance of recovery. Here’s how you can use this feature:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">If you lose an item, navigate to the 'Lost and Found' section in the app. This section is accessible from the main menu.</li>
+            <li class="list-group-item">Fill out a report with detailed information about the lost item. Include a description, photo, date of loss, and the parking location where you believe the item was lost.</li>
+            <li class="list-group-item">Once submitted, your report will be visible to the parking lot managers and the cleaning staff.</li>
+            <li class="list-group-item">If an item matching your description is found, the parking manager will list it with a description and photo in the 'Found Items' section.</li>
+            <li class="list-group-item">Regularly check the 'Found Items' section to see if your item has been reported. You can also receive notifications if an item matching your description is found.</li>
+            <li class="list-group-item">To claim a found item, follow the instructions provided in the listing. This may include contacting the parking lot manager or visiting the lost and found office in person.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-info">Suggesting Improvements</h2>
+        <p>We value your feedback and are always looking to improve our services. If you have suggestions for enhancing our platform, please follow these steps:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Go to the 'Suggestions' section in the app. This section is designed to gather user feedback and ideas for improvements.</li>
+            <li class="list-group-item">Fill out the suggestion form with as much detail as possible. Include your name, contact information, and a detailed description of your suggestion.</li>
+            <li class="list-group-item">Submit your suggestion. Our team will review it and consider it for future updates to the platform.</li>
+            <li class="list-group-item">You may receive a follow-up email from our team for further clarification or to inform you about the status of your suggestion.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-primary">Adding a New Parking Lot</h2>
+        <p>If you are a parking lot owner and want to add your parking lot to our platform, follow these steps:</p>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Navigate to the 'Add Parking' section in the app. This section is specifically designed for parking lot owners to list their properties.</li>
+            <li class="list-group-item">Fill out the form with comprehensive details about your parking lot. Include the location, number of spaces, available amenities, and any special features or services.</li>
+            <li class="list-group-item">Submit the form for review. Our team will evaluate your application and may contact you for additional information or a site visit.</li>
+            <li class="list-group-item">Once approved, your parking lot will be added to the platform and become visible to all users. You will receive a confirmation email with the listing details and any further instructions.</li>
+            <li class="list-group-item">Manage your parking lot listing through the app. You can update availability, prices, and other information as needed to ensure users have the most accurate information.</li>
+        </ol>
+    </section>
+
+    <section class="mt-4">
+        <h2 class="text-warning">Why Are We Among The Best?</h2>
+        <p>Our platform offers a range of features designed to enhance your parking experience:</p>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Lost and Found System:</strong> Easily report and find lost items, improving customer satisfaction and trust.</li>
+            <li class="list-group-item"><strong>Cleaning System:</strong> Ensure your parking spot is clean and well-maintained, providing a pleasant parking experience.</li>
+            <li class="list-group-item"><strong>Reservation System:</strong> Book your spot in advance with ease, ensuring you have a guaranteed parking space when you arrive.</li>
+            <li class="list-group-item"><strong>Visualization:</strong> See real-time availability and location of parking spots, helping you make informed decisions quickly.</li>
+        </ul>
+
+
+<h2 class="text-info" >Our Motivations</h2>
+<p>We are driven by the desire to simplify parking for everyone. Our goal is to reduce the stress of finding a parking spot, save time, and provide a seamless experience for both parking lot owners and drivers. We believe that better parking management can lead to better cities and communities. Our motivations include:</p>
+<ul class="list-group">
+    <li class="list-group-item"><strong>Convenience:</strong> Making parking easier and more efficient for all users.</li>
+    <li class="list-group-item"><strong>Transparency:</strong> Ensuring fair pricing and clear communication with our dynamic payment system and real-time notifications.</li>
+    <li class="list-group-item"><strong>Innovation:</strong> Continuously improving our platform based on user feedback and technological advancements.</li>
+    <li class="list-group-item"><strong>Community:</strong> Building a community of users and parking lot owners who benefit from better parking management and improved urban mobility.</li>
+</ul>
+
+{% endblock content %}            
+
+                
+    

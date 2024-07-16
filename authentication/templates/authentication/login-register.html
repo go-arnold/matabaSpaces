@@ -9,9 +9,7 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <title>Get into your Account</title>
-  <!-- loader-->
-  <link href="{% static 'dashtreme-master/assets/css/pace.min.css' %}" rel="stylesheet"/>
-  <script src="{% static 'dashtreme-master/assets/js/pace.min.js' %}"></script>
+  
   <!--favicon-->
   <link rel="icon" href="{% static 'dashtreme-master/assets/images/favicon.ico' %}" type="image/x-icon">
   <!-- Bootstrap core CSS-->
@@ -45,9 +43,7 @@
 {% if page == 'register' %}
 <body class="bg-theme bg-theme2">
 
-<!-- start loader -->
-   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-   <!-- end loader -->
+
 
 <!-- Start wrapper-->
  <div id="wrapper">
@@ -133,9 +129,7 @@
 		  </div>
 	     </div>
     
-     <!--Start Back To Top Button-->
-    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
+     
 	
 	<!--start color switcher-->
    <div class="right-sidebar">
@@ -177,24 +171,13 @@
 	
 	</div><!--wrapper-->
 	
-  <!-- Bootstrap core JavaScript-->
-  <script src="{% static 'dashtheme-master/assets/js/jquery.min.js' %}"></script>
-  <script src="{% static 'dashtheme-master/assets/js/popper.min.js' %}"></script>
-  <script src="{% static 'dashtheme-master/assets/js/bootstrap.min.js' %}"></script>
-	
-  <!-- sidebar-menu js -->
-  <script src="{% static 'dashtheme-master/assets/js/sidebar-menu.js' %}"></script>
-  
-  <!-- Custom scripts -->
-  <script src="{% static 'dashtheme-master/assets/js/app-script.js' %}"></script>
-  
+ 
 </body>
+
 {% else %}
 <body class="bg-theme bg-theme2">
 
-    <!-- start loader -->
-       <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-       <!-- end loader -->
+    
     
     <!-- Start wrapper-->
      <div id="wrapper">
@@ -294,16 +277,16 @@
         
         </div><!--wrapper-->
         
-      <!-- Bootstrap core JavaScript-->
+      <!-- Bootstrap core JavaScript
       <script src="{% static 'assets/js/jquery.min.js' %}"></script>
       <script src="{% static 'assets/js/popper.min.js' %}"></script>
-      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>-->
         
-      <!-- sidebar-menu js -->
-      <script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
+      <!-- sidebar-menu js 
+      <script src="{% static 'assets/js/sidebar-menu.js' %}"></script>-->
       
-      <!-- Custom scripts -->
-      <script src="{% static 'assets/js/app-script.js' %}"></script>
+      <!-- Custom scripts 
+      <script src="{% static 'assets/js/app-script.js' %}"></script>-->
       
     </body>
     {% endif %} 

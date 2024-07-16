@@ -8,9 +8,7 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <title>CikuruSpaces</title>
-  <!-- loader-->
-  <link href="{% static 'dashtreme-master/assets/css/pace.min.css' %}" rel="stylesheet"/>
-  <script src="{% static 'dashtreme-master/assets/js/pace.min.js' %}"></script>
+  
   <!--favicon-->
   <link rel="icon" href="{% static 'dashtreme-master/assets/images/favicon.ico' %}" type="image/x-icon">
   <!-- simplebar CSS-->
@@ -30,9 +28,7 @@
 
 <body class="bg-theme bg-theme2">
 
-<!-- start loader -->
-   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-   <!-- end loader -->
+
 
 <!-- Start wrapper-->
  <div id="wrapper">
@@ -55,6 +51,11 @@
     <li>
       <a href="{% url 'home'%}#all">
         <i class="zmdi zmdi-car text-primary"></i> <span>See parkings</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'help'%}">
+        <i class="zmdi zmdi-help"></i><span>Help </span>
       </a>
     </li>
     {% if request.user.is_authenticated %}
@@ -237,7 +238,7 @@
         <div class="card">
           <img class="card-img-top" src="{{ object.image.url }}" alt="Lost object">
           <div class="card-body">
-            <h5 class="card-title">{{ object.name }}</h5>
+            <h5 class="card-title text-center">{{ object.name }}</h5>
             <p class="card-text">{{ object.description }}</p>
           </div>
           <ul class="list-group list-group-flush">
@@ -290,13 +291,6 @@
   </div>
 
 
-
-
-
-
-
-      
-      
     <!---->
   </div><!--End Row-->
 

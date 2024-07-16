@@ -14,9 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-  <!-- loader-->
-  <link href="{% static 'dashtreme-master/assets/css/pace.min.css' %}" rel="stylesheet"/>
-  <script src="{% static 'dashtreme-master/assets/js/pace.min.js' %}"></script>
+  
   <!--favicon-->
   <link rel="icon" href="{% static 'dashtreme-master/assets/images/favicon.ico' %}" type="image/x-icon">
   <!-- calendar CSS-->
@@ -40,9 +38,6 @@
 
 <body class="bg-theme bg-theme2">
 
-<!-- start loader -->
-   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-   <!-- end loader -->
 
 <!-- Start wrapper-->
  <div id="wrapper">
@@ -65,6 +60,12 @@
    <li>
     <a href="{% url 'home'%}#all">
       <i class="zmdi zmdi-car text-primary"></i> <span>View parkings</span>
+    </a>
+
+  </li>
+  <li>
+    <a href="{% url 'help'%}">
+      <i class="zmdi zmdi-help"></i><span>Help </span>
     </a>
   </li>
    {% if request.user.is_authenticated %}
@@ -141,7 +142,7 @@
   <!--End sidebar-wrapper-->
 <style>
     .topbar-nav {
-        z-index: 1050; /* Assurez-vous que le z-index est supérieur à celui du carrousel */
+        z-index: 1050; 
       }
 </style>
 <!--Start topbar header-->
@@ -271,14 +272,7 @@
  <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
  <!--End Back To Top Button-->
 
-<!--Start footer
-<footer class="footer">
-   <div class="container">
-     <div class="text-center">
-       Copyright © 2024 CikuruSpaces
-     </div>
-   </div>
- </footer>End footer-->
+
 
 <!--start color switcher-->
 <div class="right-sidebar">
