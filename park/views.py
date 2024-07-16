@@ -102,7 +102,7 @@ def home (request):
              'ppark':ppark}
     return render(request,'home.html',context)
 
-
+@login_required(login_url='login')
 def parking(request, parking_area_id):
     parking = get_object_or_404(ParkingArea, id=parking_area_id)
     are_booked=Slot.objects.filter(area=parking, is_booked=True).count()
