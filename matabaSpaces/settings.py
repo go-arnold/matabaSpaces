@@ -34,10 +34,9 @@ INSTALLED_APPS = [
     'reservation.apps.ReservationConfig',
     'stats.apps.StatsConfig',
     
-    'dbbackup',
+   
 ]
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': '/restore/'}
+
 
 AUTH_USER_MODEL = 'authentication.User'
 #AUTHENTICATION_BACKENDS = ['authentication.backends.EmailBackend']
