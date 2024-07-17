@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required,permission_required, user_passes_test
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
-
+from django.contrib.auth import get_user_model
 import json
 from .models import ParkingArea,TheCity,Slot,FoundObject,LostRequest
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +16,7 @@ from django.db.models.functions import ExtractHour
 from reservation.models import Reservation
 from reservation.tasks import check_expired_reservations
 from authentication.utils import is_member
+from authentication.models import User
 
 
 
@@ -65,7 +66,7 @@ def ldrdata(request):
 def home (request):     
     
     q=request.GET.get('q') if request.GET.get('q') !=None else ''
-    user=request.user
+    
     parkings=ParkingArea.objects.filter(
         Q (city__name__icontains=q) |
         Q (location__icontains=q) |
@@ -95,12 +96,10 @@ def home (request):
         available_slots = slots.filter(status=True, is_booked=False).count()
         parking.available_slots = available_slots
         parking.total_slots=total_slots
-    is_parking_manager = is_member(user, 'ParkingManager')
-    is_user = is_member(user, 'User')
+    
     context={'parkings':parkings,
-             'user': request.user,
-            'is_parking_manager':is_parking_manager,
-            'is_user':is_user,
+             
+            
              'parks':parks,
              'cities':city,
              'npark':npark,
@@ -146,6 +145,7 @@ def parking(request, parking_area_id):
    
     return render(request, 'park/parking.html', context)
 
+@login_required(login_url='login')
 def pricing(request,pk):
     prices=ParkingArea.objects.get(id=pk)
     is_parking_manager = is_member(request.user, 'ParkingManager')

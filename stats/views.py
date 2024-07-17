@@ -4,6 +4,7 @@ from django.db.models import Count
 from django.contrib import messages
 from .models import Message_Contact, Notification
 from authentication.utils import is_member
+from django.contrib.auth.decorators import login_required,permission_required, user_passes_test
 
 
 
@@ -84,11 +85,9 @@ def statistics_view(request):
             'nparks': ParkingArea.objects.filter(city=city).count()
         })
 
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
+    
     context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,
+        
         'line_chart_data': line_chart_data,
         'mixed_chart_data': mixed_chart_data,
         'doughnut_chart_data': doughnut_chart_data,
@@ -128,16 +127,13 @@ def contact_us(request):
             return redirect('contact')  # Redirige pour éviter de renvoyer le formulaire en POST
         else:
             messages.error(request, 'Please fill in all fields.')
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
+    
     
     context={
-        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,
+       
     }   
     return render(request, 'contact.html',context)
-
+@login_required(login_url='login')
 def notifications(request):
     notifs=Notification.objects.all()
     user=request.user
@@ -152,59 +148,35 @@ def notifications(request):
     }   
     return render(request,'stats/notifications.html',context)
 def calendar(request):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
+   
     context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    }
     return render(request,'calendar.html',context)
 
 def about(request):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
+    
     context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+       }
     return render(request,'about.html',context)
 
 def custom_404_view(request, exception):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    
     return render(request, '404.html', status=404)
 
 def custom_500_view(request):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    
     return render(request, '500.html', status=500)
 
 def custom_403_view(request, exception):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    
     return render(request, '403.html', status=403)
 
 def custom_400_view(request, exception):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    
     return render(request, '400.html', status=400)
 
 def howto (request):
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context = {        
-        'is_parking_manager':is_parking_manager,
-        'is_user':is_user,}
+    context={}
     return render(request,'stats/howto.html',context)
 
 
