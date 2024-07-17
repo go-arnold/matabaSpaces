@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CikuruSpaces{% endblock %}</title>
+    
+    <!-- Balises Open Graph -->
+    <meta property="og:title" content="{% block og_title %}Titre par défaut{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Description par défaut{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://votre-site.com/path/to/image.jpg{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}https://votre-site.com/{% endblock %}">
+    <meta property="og:type" content="website">
+    
+    <!-- Balises Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Titre par défaut{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Description par défaut{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://votre-site.com/path/to/image.jpg{% endblock %}">
+    
+    <!-- Autres balises meta et CSS -->
+</head>
+<body>
+    {% block content %}
+    <!-- Contenu de la page -->
+    {% endblock %}
+</body>
+</html>

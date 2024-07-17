@@ -5,7 +5,7 @@ from django.contrib import messages
 from .models import Message_Contact, Notification
 from authentication.utils import is_member
 from django.contrib.auth.decorators import login_required,permission_required, user_passes_test
-
+from django.templatetags.static import static
 
 
 def statistics_view(request):
@@ -178,6 +178,19 @@ def custom_400_view(request, exception):
 def howto (request):
     context={}
     return render(request,'stats/howto.html',context)
+
+def some_view(request):
+    context = {
+        'page_title': 'CikuruSpaces',
+        'og_title': 'CikuruSpaces',
+        'og_description': 'CikuruSpaces, une plateforme de gestion intelligente de parkings. Elle gère les reservations, augmente la sécurité et vous donne la chance de retrouver vos itemes/objets oubliés dans un de nos parkings',
+        'og_image': request.build_absolute_uri(static('dashtreme-master/assets/images/logo-icon.png')),
+        'og_url': request.build_absolute_uri(),
+        'twitter_title': 'CikuruSpaces',
+        'twitter_description': 'CikuruSpaces, une plateforme de gestion intelligente de parkings. Elle gère les reservations, augmente la sécurité et vous donne la chance de retrouver vos itemes/objets oubliés dans un de nos parkings',
+        'twitter_image': request.build_absolute_uri(static('dashtreme-master/assets/images/logo-icon.png')),
+    }
+    return render(request, 'home-main.html', context)
 
 
     
