@@ -15,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models.query_utils import Q
 from park.models import LostRequest
 import re
+from authentication.utils import is_member
+
 
 #import authentication
 
@@ -194,9 +196,12 @@ def changeAll(request):
         messages.success(request, 'You have successfully updated your profile !')
         login(request, user)  
         return redirect('change')
-    
+    is_parking_manager = is_member(user, 'ParkingManager')
+    is_user = is_member(user, 'User')
     context = {
        'user': request.user,
+       'is_parking_manager':is_parking_manager,
+       'is_user': is_user,
        'lost_requetes':lost_requests,
        'lost_object_requests':lost_object_requests,
        }

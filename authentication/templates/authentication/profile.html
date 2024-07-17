@@ -50,7 +50,7 @@
    </li>
    <li>
     <a href="{% url 'home'%}#all">
-      <i class="zmdi zmdi-car text-primary"></i> <span>See parkings</span>
+      <i class="zmdi zmdi-car text-primary"></i> <span>View parkings</span>
     </a>
   </li>
   <li>
@@ -61,26 +61,26 @@
    {% if request.user.is_authenticated %}
    <li>
      <a href="{% url 'found_objects'%}">
-       <i class="zmdi zmdi-shape text-warning"></i><span>Lost something?</span>
+       <i class="zmdi zmdi-shape text-warning"></i><span> Lost an item?</span>
      </a>
    </li> 
    {% if user.is_superuser or is_parking_manager %}
          
    <li>
      <a href="{% url 'add_found_object'%}">
-      <i class="zmdi zmdi-plus-circle-o text-success"> </i> <span> Add lost object</span>
+      <i class="zmdi zmdi-plus-circle-o text-success"> </i> <span> Add found item</span>
      </a>
    </li> 
    {% else %} 
    <li>
     <a href="{% url 'request_lost_object'%}">
-      <i class="zmdi zmdi-assignment text-success"></i> <span>Request for lost object</span>
+      <i class="zmdi zmdi-assignment text-success"></i> <span> Report a lost item</span>
     </a>
   </li>  
    {% endif%}   
    <li>
      <a href="{% url 'change' %}">
-       <i class="zmdi zmdi-account text-primary"></i> <span>Profile</span>
+       <i class="zmdi zmdi-account text-primary"></i> <span> Profile</span>
      </a>
    </li>
    <li>
@@ -155,12 +155,12 @@
     <li class="nav-item language">
       <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="zmdi zmdi-widgets"></i></a>
       <ul class="dropdown-menu dropdown-menu-right">
-        <li class="dropdown-item"> <i class="zmdi zmdi-format-subject"></i> <a href="{% url 'found_objects'%}">  List of Objects found </a></li>
+        <li class="dropdown-item"> <i class="zmdi zmdi-format-subject"></i> <a href="{% url 'found_objects'%}">  List of items found </a></li>
         {% if not user.is_superuser or not is_parking_manager %}
         <li class="dropdown-item"> <i class="zmdi zmdi-square-right "></i> <a href="{% url 'my_lost_requests'%}"> See my requests </a></li>
         {% endif %}
         {% if user.is_superuser or is_parking_manager %}
-        <li class="dropdown-item"> <i class="zmdi zmdi-plus-circle-o "></i> <a href="{% url 'add_found_object'%}"> Add lost object </a></li>
+        <li class="dropdown-item"> <i class="zmdi zmdi-plus-circle-o "></i> <a href="{% url 'add_found_object'%}"> Add lost a item </a></li>
         {% endif%}
         
     </ul>

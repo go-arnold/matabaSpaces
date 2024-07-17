@@ -15,6 +15,8 @@ from django.db.models import Count
 from django.db.models.functions import ExtractHour
 from reservation.models import Reservation
 from reservation.tasks import check_expired_reservations
+from authentication.utils import is_member
+
 
 
 import matplotlib
@@ -63,7 +65,7 @@ def ldrdata(request):
 def home (request):     
     
     q=request.GET.get('q') if request.GET.get('q') !=None else ''
-    
+    user=request.user
     parkings=ParkingArea.objects.filter(
         Q (city__name__icontains=q) |
         Q (location__icontains=q) |
@@ -93,8 +95,12 @@ def home (request):
         available_slots = slots.filter(status=True, is_booked=False).count()
         parking.available_slots = available_slots
         parking.total_slots=total_slots
-     
+    is_parking_manager = is_member(user, 'ParkingManager')
+    is_user = is_member(user, 'User')
     context={'parkings':parkings,
+             'user': request.user,
+            'is_parking_manager':is_parking_manager,
+            'is_user':is_user,
              'parks':parks,
              'cities':city,
              'npark':npark,
@@ -123,8 +129,12 @@ def parking(request, parking_area_id):
             'percentage': percentage
         })
     reservations=Reservation.objects.filter(parking_area=parking,user=request.user)
-    
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
     context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
         'parking': parking,
         'occupancy_percentage': json.dumps(occupancy_percentage, cls=DjangoJSONEncoder),
         'slots':slots,
@@ -138,7 +148,13 @@ def parking(request, parking_area_id):
 
 def pricing(request,pk):
     prices=ParkingArea.objects.get(id=pk)
-    context={'prices':prices}
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
+    context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
+        'prices':prices}
     return render(request,'park/pricing.html',context)
 
 
@@ -192,7 +208,12 @@ def add_found_object(request):
         except ParkingArea.DoesNotExist:
             messages.error(request, 'Invalid parking area selected.')
 
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
     context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
         'accepted_image_formats': accepted_image_formats,
         'parkings': parkings,
     }
@@ -224,7 +245,12 @@ def lost_object_request_view(request):
         except ParkingArea.DoesNotExist:
             messages.error(request, 'Invalid parking area selected.')
 
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
     context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
         'accepted_image_formats': accepted_image_formats,
         'parkings': parkings,
     }
@@ -238,8 +264,15 @@ def my_lost_requests(request):
         theNumber=False
     else:
         theNumber=True    
-    
-    return render(request, 'park/my_lost.html', {'lost_requests': lost_requests,'theNumber':theNumber})
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
+    context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
+        'lost_requests': lost_requests,
+        'theNumber':theNumber}
+    return render(request, 'park/my_lost.html',context)
 
 @user_passes_test(lambda u: u.groups.filter(name='ParkingManager').exists())
 def respond_to_lost_request(request, pk):
@@ -250,8 +283,12 @@ def respond_to_lost_request(request, pk):
         lost_request.is_responded = True
         lost_request.save()
         return redirect('found_objects')
-
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
     context = {
+        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
         'lost_request': lost_request,
     }
     return render(request, 'park/lost_object_response_form.html', context)

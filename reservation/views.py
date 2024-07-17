@@ -7,6 +7,8 @@ from authentication.models import User
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from authentication.utils import is_member
+
 
 from .tasks import check_expired_reservations
 
@@ -48,7 +50,11 @@ def reserve_slot(request, pk):
         return redirect('parking', parking_area_id=parking_area.id)
     
     
-    context = {
+    is_parking_manager = is_member(request.user, 'ParkingManager')
+    is_user = is_member(request.user, 'User')
+    context = {        
+        'is_parking_manager':is_parking_manager,
+        'is_user':is_user,
         'slot': slot,
         'parking_area': parking_area,
         'price_per_hour': slot.price
@@ -61,11 +67,16 @@ def selectSlot(request,pk):
     slot = get_object_or_404(Slot, id=pk)
     parking_area = slot.area
     price_per_hour = slot.price  
-    
-    context = {
-        'slot': slot,
-        'parking_area': parking_area,
-        'price_per_hour': price_per_hour
+    user=request.user
+    is_parking_manager = is_member(user, 'ParkingManager')
+    is_user = is_member(user, 'User')
+    context={
+             'user': request.user,
+            'is_parking_manager':is_parking_manager,
+            
+            'slot': slot,
+            'parking_area': parking_area,
+            'price_per_hour': price_per_hour
     }
     return render(request, 'reservation/reserve.html', context)
 

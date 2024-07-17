@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 #ALLOWED_HOSTS = ['127.0.0.1','172.20.10.12','localhost', '192.168.1.73','192.168.1.85','cikuru-spaces-k6fz.onrender.com',]
@@ -62,7 +62,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Africa/kigali'
+CELERY_TIMEZONE = 'Africa/Kigali'
 
 
 MIDDLEWARE = [
