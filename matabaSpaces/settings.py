@@ -33,7 +33,11 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'reservation.apps.ReservationConfig',
     'stats.apps.StatsConfig',
+    
+    'dbbackup',
 ]
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/restore/'}
 
 AUTH_USER_MODEL = 'authentication.User'
 #AUTHENTICATION_BACKENDS = ['authentication.backends.EmailBackend']
@@ -109,12 +113,24 @@ WSGI_APPLICATION = 'matabaSpaces.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+"""  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}  """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cikuruspaces',
+        'USER': 'cikuruspaces_user',
+        'PASSWORD': 'ZcQjcAL19E0ooYnhaXUIx7bsICpGYnTj',
+        'HOST': 'dpg-cqbgbkbv2p9s73er1pkg-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
+
+
 
 
 # Password validation
