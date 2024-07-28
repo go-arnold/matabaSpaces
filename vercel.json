@@ -1,28 +1,28 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "manage.py",
-        "use": "@vercel/python"
+  "version": 2,
+  "builds": [
+    {
+      "src": "matabaSpaces/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "manage.py"
-      }
-    ],
-    "env": {
-      "DJANGO_SECRET_KEY": "django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5",
-      "DEBUG": "False",
-      "ALLOWED_HOSTS": "*",
-      "DB_NAME": "defaultdb",
-      "DB_USER": "avnadmin",
-      "DB_PASSWORD": "AVNS_2pz-of7L39sXYdZB_ve",
-      "DB_HOST": "cikuruspaces-cikuruspaces.d.aivencloud.com",
-      "DB_PORT": "17101",
-      "EMAIL_HOST_USER": "arnoldciku@gmail.com",
-      "EMAIL_HOST_PASSWORD": "raizdlbsugophphs"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "matabaSpaces/wsgi.py"
+    }
+  ]
+}
   

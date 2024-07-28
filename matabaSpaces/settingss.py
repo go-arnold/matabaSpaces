@@ -10,10 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5'
+#SECRET_KEY = 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-g^np^jf$2$s^=bll*fhwe*3+i=h@fwv6udhevmfj%3tab40^v5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+#DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 
 #ALLOWED_HOSTS = ['127.0.0.1','172.20.10.12','localhost', '192.168.1.73','192.168.1.85','cikuru-spaces-k6fz.onrender.com',]
@@ -67,7 +69,8 @@ CELERY_TIMEZONE = 'Africa/Kigali'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
+   'whitenoise.middleware.WhiteNoiseMiddleware',
+   
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,10 +80,15 @@ MIDDLEWARE = [
    
 ]
 
-STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','static')
+"""
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),)
+"""
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
@@ -119,6 +127,8 @@ WSGI_APPLICATION = 'matabaSpaces.wsgi.application'
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }  """
+"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -127,6 +137,17 @@ DATABASES = {
         'PASSWORD': 'AVNS_2pz-of7L39sXYdZB_ve',
         'HOST': 'cikuruspaces-cikuruspaces.d.aivencloud.com',
         'PORT': '17101',
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'defaultdb'),
+        'USER': os.environ.get('DB_USER', 'avnadmin'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'AVNS_2pz-of7L39sXYdZB_ve'),
+        'HOST': os.environ.get('DB_HOST', 'cikuruspaces-cikuruspaces.d.aivencloud.com'),
+        'PORT': os.environ.get('DB_PORT', '17101'),
     }
 }
 
@@ -179,3 +200,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #APPEND_SLASH = False
+
