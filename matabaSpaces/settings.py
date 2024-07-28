@@ -32,9 +32,7 @@ INSTALLED_APPS = [
     'park.apps.ParkConfig',
     'authentication.apps.AuthenticationConfig',
     'reservation.apps.ReservationConfig',
-    'stats.apps.StatsConfig',
-    
-    'dbbackup',
+    'stats.apps.StatsConfig'   
 ]
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/restore/'}
