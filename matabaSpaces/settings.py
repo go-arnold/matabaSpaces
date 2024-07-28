@@ -180,3 +180,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #APPEND_SLASH = False
+#scipy==1.14.0
