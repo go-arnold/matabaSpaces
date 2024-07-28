@@ -122,11 +122,11 @@ WSGI_APPLICATION = 'matabaSpaces.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cikuruspaces',
-        'USER': 'cikuruspaces_user',
-        'PASSWORD': 'ZcQjcAL19E0ooYnhaXUIx7bsICpGYnTj',
-        'HOST': 'dpg-cqbgbkbv2p9s73er1pkg-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_2pz-of7L39sXYdZB_ve',
+        'HOST': 'cikuruspaces-cikuruspaces.d.aivencloud.com',
+        'PORT': '17101',
     }
 }
 
