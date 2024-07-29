@@ -20,8 +20,7 @@ from authentication.models import User
 
 
 
-import matplotlib
-matplotlib.use('agg')
+
 ####
 
 # Create your views here.
