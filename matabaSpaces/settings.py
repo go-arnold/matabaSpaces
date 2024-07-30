@@ -84,10 +84,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','static')
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
-
-
-
-
 ROOT_URLCONF = 'matabaSpaces.urls'
 
 TEMPLATES = [
