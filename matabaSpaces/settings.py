@@ -32,8 +32,19 @@ INSTALLED_APPS = [
     'park.apps.ParkConfig',
     'authentication.apps.AuthenticationConfig',
     'reservation.apps.ReservationConfig',
-    'stats.apps.StatsConfig'   
+    'stats.apps.StatsConfig',
+    
+    'cloudinary',
+    'cloudinary_storage',  
 ]
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'drr52kmqm',
+    'API_KEY': '941455988233549',
+    'API_SECRET': 'C3pcTCXQJ508T1zBo1mzgFwfZi8'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/restore/'}
 
@@ -81,7 +92,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','static')
 
-MEDIA_URL = '/images/'
+#MEDIA_URL = '/images/'
+MEDIA_URL = 'https://res.cloudinary.com/drr52kmqm/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 ROOT_URLCONF = 'matabaSpaces.urls'
