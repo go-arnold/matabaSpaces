@@ -92,8 +92,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','static')
 
-#MEDIA_URL = '/images/'
-MEDIA_URL = 'https://res.cloudinary.com/drr52kmqm/'
+MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 ROOT_URLCONF = 'matabaSpaces.urls'
