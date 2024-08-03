@@ -19,12 +19,6 @@ from authentication.utils import is_member
 from authentication.models import User
 
 
-
-
-####
-
-# Create your views here.
-
 @csrf_exempt
 def ldrdata(request):
     if request.method == 'POST':

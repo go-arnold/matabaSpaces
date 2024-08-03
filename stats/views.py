@@ -85,25 +85,46 @@ def statistics_view(request):
             'nparks': ParkingArea.objects.filter(city=city).count()
         })
 
-    
-    context = {        
+    if objects_park!=0 :
         
-        'line_chart_data': line_chart_data,
-        'mixed_chart_data': mixed_chart_data,
-        'doughnut_chart_data': doughnut_chart_data,
-        'total_slots': total_slots,
-        'booked': booked,
-        'avg_per_ville': avg_per_ville,
-        'avg_per_ville_percent': (1 / avg_per_ville) * 100,
-        'book_percent': book_percent,
-        'occupied_percent': occupied_percent,
-        'allparks': allparks,
-        'objects_park': objects_park,
-        'objects_park_percent': (1 / objects_park),
-        'objects': objects,
-        'city_parking_counts': city_parking_counts, 
+        context = {        
+            
+            'line_chart_data': line_chart_data,
+            'mixed_chart_data': mixed_chart_data,
+            'doughnut_chart_data': doughnut_chart_data,
+            'total_slots': total_slots,
+            'booked': booked,
+            'avg_per_ville': avg_per_ville,
+            'avg_per_ville_percent': (1 / avg_per_ville) * 100,
+            'book_percent': book_percent,
+            'occupied_percent': occupied_percent,
+            'allparks': allparks,
+            'objects_park': objects_park,
+            'objects_park_percent': (1 / objects_park),
+            'objects': objects,
+            'city_parking_counts': city_parking_counts, 
+            
+        }
+    else:
+        context = {        
+            
+            'line_chart_data': line_chart_data,
+            'mixed_chart_data': mixed_chart_data,
+            'doughnut_chart_data': doughnut_chart_data,
+            'total_slots': total_slots,
+            'booked': booked,
+            'avg_per_ville': avg_per_ville,
+            'avg_per_ville_percent': (1 / avg_per_ville) * 100,
+            'book_percent': book_percent,
+            'occupied_percent': occupied_percent,
+            'allparks': allparks,
+            'objects_park': objects_park,
+            'objects_park_percent': 0 ,
+            'objects': objects,
+            'city_parking_counts': city_parking_counts, 
+            
+        }
         
-    }
 
     
     return render(request, 'stats/global_occupation.html', context)
