@@ -46,7 +46,7 @@ def ldrdata(request):
                     occupancy += 1
                 ParkingArea.objects.filter(id=parking_area.id).update(slots=slots, occupancy=occupancy)
         
-            return JsonResponse({'success': 'Les données ont été enregistrées avec succes.'})
+            return JsonResponse({'success': 'Les donnees ont été enregistrees avec succes.'})
         except json.JSONDecodeError as e:
             return JsonResponse({'error': str(e)}, status=400)
         except ParkingArea.DoesNotExist:
