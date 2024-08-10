@@ -50,7 +50,7 @@ def ldrdata(request):
         except json.JSONDecodeError as e:
             return JsonResponse({'error': str(e)}, status=400)
         except ParkingArea.DoesNotExist:
-            return JsonResponse({'error': 'ParkingArea non trouvé.'}, status=404)
+            return JsonResponse({'error': 'ParkingArea non trouve.'}, status=404)
     else:
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
     
