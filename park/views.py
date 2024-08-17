@@ -105,7 +105,7 @@ def parking(request, parking_area_id):
     parking = get_object_or_404(ParkingArea, id=parking_area_id)
     are_booked=Slot.objects.filter(area=parking, is_booked=True).count()
     slots = Slot.objects.filter(area=parking)
-    libre=(parking.occupancy) -(are_booked)
+    libre=(parking.occupancy)-(are_booked)    
     
     total_slots = slots.count()
     
