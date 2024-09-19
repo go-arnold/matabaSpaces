@@ -89,11 +89,8 @@ def home (request):
         available_slots = slots.filter(status=True, is_booked=False).count()
         parking.available_slots = available_slots
         parking.total_slots=total_slots
-    is_parking_manager = is_member(request.user, 'ParkingManager')
-    is_user = is_member(request.user, 'User')
-    context={'parkings':parkings,
-             'is_parking_manager':is_parking_manager,
-             'is_user':is_user,            
+    
+    context={'parkings':parkings,     
              'parks':parks,
              'cities':city,
              'npark':npark,
