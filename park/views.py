@@ -162,7 +162,7 @@ def occupy_slot(request, slot_id):
         messages.error(request, 'Slot already occupied or booked.')
 
     return redirect('home')
-
+#slot price
 def get_slot_price(parking_area, slot_number):
     if slot_number % 3 == 1:
         return parking_area.pricelvl1
